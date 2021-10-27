@@ -1,41 +1,42 @@
 # If this is your first time writing a language grammar, check out:
 #   - https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/
 
-'scopeName': 'source.ems'
-'name': 'EMS'
-'fileTypes': [
-  ".ems",
-  ".emsx"
+scopeName: 'source.ems'
+name: 'EMS'
+
+fileTypes: [
+  '.ems',
+  '.emsx'
 ]
-'patterns': [
-  {
-      "name": "comment.line.ems",
-      "match": "#.*"
-  },
-  {
-      "name": "meta.instruction.ems",
-      "match": "(create|addprop|add|commit|compact|delete|disconnect|echo|exit|grant|help|purge|removeprop|remove|resume|revoke|setprop|set|show|transaction)"
-  },
-  {
-      "name": "meta.argument.ems",
-      "match": "(admin|queue|topic|generic|bridge|route|user|all|connection|durable|factory|group|jndiname|message|server)"
-  },
-  {
-      "name": "meta.instruction.ems",
-      "match": "(max_msg_memory|authorization|password|log_trace|console_trace|client_trace|msg_swapping|zone_name|zone_type|topic_prefetch|view-connection|view-durable|view-destination|view-server|reconnect_attempt_count|reconnect_attempt_delay|reconnect_attempt_timeout|connect_attempt_count|connect_attempt_delay|connect_attempt_timeout|connect|sender_name_enforced|sender_name|channel|exclusive|expiration|export|flowControl|global|import|maxbytes|maxmsgs|maxRedelivery|overflowPolicy|prefetch|redeliveryDelay|secure|store|trace|selector|receive|send|browse|view|subscribe|publish|use_durable|rejectIncoming|url|modify)"
-  },
-  {
-      "name": "support.variable",
-      "match": "(ssl_dh_size|ssl_server_ciphers|ssl_require_client_cert|ssl_require_route_cert_only|ssl_use_cert_username|ssl_cert_user_specname|ssl_server_identity|ssl_server_key|ssl_password|ssl_server_issuer|ssl_server_trusted|ssl_crl_path|ssl_crl_update_interval|fips140-2|ssl_vendor|ssl_identity|ssl_issuer|ssl_private_key|ssl_trusted|ssl_verify_hostname|ssl_verify_host|ssl_expected_hostname|ssl_ciphers|ssl_auth_only)"
-  },
-  {
-      "name": "string.quoted.double.untitled",
-      "begin": "\"",
-      "end": "\""
-  },
-  {
-      "name": "variable.other",
-      "begin": "\\${",
-      "end": "}"
-  }
+
+patterns: [
+    { include: '#comment' }
+    { include: '#section' }
+    { include: '#instruction' }
+    { include: '#strings' }
 ]
+
+repository:
+    comment: {
+        name: 'comment.line.ems'
+        match: '#.*'
+    }
+    instruction: {
+        name: 'instruction.ems',
+        match: '\\b(create|addprop|add|commit|compact|delete|disconnect|echo|exit|grant|help|purge|removeprop|remove|resume|revoke|setprop|set|show|transaction)\\b'
+    }
+  #'comments':
+  #  {
+  #      "name": "comment.line.ems",
+  #      "match": "#.*"
+  #  }
+  #  'instruction':
+  #  {
+  #      "name": "meta.instruction.ems",
+  #      "match": "\\b(create|addprop|add|commit|compact|delete|disconnect|echo|exit|grant|help|purge|removeprop|remove|resume|revoke|setprop|set|show|transaction)\\b"
+  #  },
+  #  'argument':
+  #  {
+  #      "name": "meta.argument.ems",
+  #      "match": "(admin|queue|topic|generic|bridge|route|user|all|connection|durable|factory|group|jndiname|message|server)"
+  #  }

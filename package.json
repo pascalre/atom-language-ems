@@ -1,6 +1,6 @@
 {
   "name": "language-ems",
-  "version": "0.0.1",
+  "version": "0.3.6",
   "description": "Adds TIBCO EMS syntax language support to Atom.",
   "keywords": [
     "language",
@@ -11,5 +11,8 @@
   "bugs": "https://github.com/pascalre/atom-language-ems/issues",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "tree-sitter-cli": "^0.20.0"
   }
 }
